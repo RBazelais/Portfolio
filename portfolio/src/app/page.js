@@ -198,14 +198,14 @@ export default function Home() {
 					{/* Experience Section */}
 					<section
 						id="experience"
-						className="mb-24 scroll-mt-24"
+						className="mb-24 scroll-mt-0"
 						aria-label="Work experience"
 					>
 						<BackgroundTabs />
 					</section>
 
 					{/* Projects Section */}
-					<section id="projects" className="mb-24 scroll-mt-24" aria-label="Selected projects">
+					<section id="projects" className="mb-24 scroll-mt-0" aria-label="Selected projects">
 						<h3 className="text-lg font-semibold text-[var(--foreground)] mb-8 lg:hidden">
 							Projects
 						</h3>
