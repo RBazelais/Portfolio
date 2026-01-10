@@ -3,8 +3,8 @@ export const education = [
         date: "2025 — 2026",
         title: "Western Governors University",
         subtitle: "B.S. Computer Science",
-        description: "Expected Graduation December 2026. Focused on software engineering and systems design.",
-        skills: ["Data Structures & Algorithms", "Computer Architecture", "AI Optimization"]
+        description: "Expected Graduation December 2026. Focused on deepening my CS Knowledge. I study remotely on weekends, it will not affect full time employment.",
+        skills: ["System Design", "Computer Architecture", "AI Optimization"]
     },
     {
         date: "2025 - 2026",
