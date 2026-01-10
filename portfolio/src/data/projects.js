@@ -38,9 +38,11 @@ export const projects = [
 		
 		learnings: [
 			"Deep understanding of UE5's UMG widget lifecycle",
-			"MVVM pattern implementation in a game engine context",
+			"MVVM pattern transfers from React/web to game engines - same architecture, different automation level",
 			"C++ delegate system for decoupled communication",
-			"Performance profiling with Unreal Insights"
+			"Subsystems handle their own lifecycle, eliminating manual setup boilerplate",
+			"Forward declarations sufficient for pointer types - only include headers when calling methods",
+			"Event-driven UI scales to complex UIs without performance hits"
 		],
 		
 		skills: ["Unreal Engine 5", "C++", "Blueprints", "UMG", "MVVM"]
