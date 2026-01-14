@@ -31,11 +31,6 @@ export default function Home() {
 
 	return (
 		<>
-			{/* Ambient glow orbs */}
-			<div className="glow glow-1" />
-			<div className="glow glow-2" />
-			<div className="glow glow-3" />
-
 			<div className="min-h-screen flex flex-col lg:flex-row lg:justify-between lg:gap-4 max-w-6xl mx-auto px-6 py-12 lg:py-24">
 				{/* Left Sidebar */}
 				<header className="lg:w-[48%] lg:sticky lg:top-24 lg:h-fit mb-12 lg:mb-0 flex flex-col">
