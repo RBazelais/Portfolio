@@ -8,7 +8,7 @@ export const projects = [
         github: "https://github.com/RBazelais/AdaptiveInventory",
         liveUrl: null,
         featured: true,
-        status: "in-progress",
+        status: "Visual Polish In-Progress",
         
         problem: "Most inventory tutorials teach tightly-coupled approaches that don't scale. Coming from web-based game UI (Coherent Gameface), I wanted to understand how native UE5 UMG systems work and learn Epic's recommended patterns for production-quality game UI.",
         
