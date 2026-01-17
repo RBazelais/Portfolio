@@ -262,3 +262,35 @@ strong, .highlight {
 .skill-pill:nth-child(6) { animation-delay: -0.10s; animation-duration: 0.24s; }
 .skill-pill:nth-child(7) { animation-delay: -0.07s; animation-duration: 0.27s; }
 .skill-pill:nth-child(8) { animation-delay: -0.13s; animation-duration: 0.23s; }
+
+/* REDUCED MOTION SUPPORT */
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable name animation */
+    .name-animated .letter {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Disable subtitle fade-in */
+    .subtitle-animated {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    /* Disable skill pill wobble */
+    .group:hover .skill-pill {
+        animation: none;
+    }
+
+    /* Disable all other transitions/animations */
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
