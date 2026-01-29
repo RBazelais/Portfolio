@@ -4,13 +4,13 @@ export default function NotFound() {
     return (
         <div className="min-h-screen max-w-4xl mx-auto px-6 py-12 lg:py-24 flex flex-col items-center justify-center">
             <div className="text-center space-y-6">
-                <h1 className="text-6xl font-bold text-[var(--foreground)]">404</h1>
-                <p className="text-xl text-[var(--muted)]">
+                <h1 className="text-6xl font-bold text-[var(--ui-active)]">404</h1>
+                <p className="text-xl text-[var(--ui-muted)]">
                     This project could not be found.
                 </p>
                 <Link
                     href="/#projects"
-                    className="inline-flex items-center text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-12 group"
+                    className="inline-flex items-center text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors mb-12 group"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { getSkillTagClass } from "@/utils/skillColors";
 
 // Animation variants
 const fadeInUp = {
@@ -63,7 +64,7 @@ export default function ProjectContent({ project, otherProjects }) {
             {/* Back link */}
             <Link
                 href="/#projects"
-                className="inline-flex items-center text-[var(--muted)] hover:text-[var(--primary)] transition-colors mb-12 group"
+                className="inline-flex items-center text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors mb-12 group"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -84,19 +85,19 @@ export default function ProjectContent({ project, otherProjects }) {
             {/* Header */}
             <MotionSection className="mb-12" {...sectionProps}>
                 <div className="flex items-center gap-3 mb-2">
-                    <h1 className="text-4xl font-bold text-[var(--foreground)]">
+                    <h1 className="text-4xl font-bold text-[var(--ui-active)]">
                         {project.title}
                     </h1>
                     {project.status === "in-progress" && (
-                        <span className="px-3 py-1 text-xs font-medium bg-yellow-500/15 text-yellow-400 rounded-full">
+                        <span className="px-3 py-1 text-xs font-medium font-mono bg-[var(--syntax-yellow)]/15 text-[var(--syntax-yellow)] rounded-full">
                             In Progress
                         </span>
                     )}
                 </div>
-                <p className="text-xl text-[var(--primary)] mb-4">
+                <p className="text-xl text-[var(--accent)] mb-4">
                     {project.subtitle}
                 </p>
-                <p className="text-[var(--muted)] text-lg leading-relaxed max-w-2xl">
+                <p className="text-[var(--ui-muted)] text-lg leading-relaxed max-w-2xl">
                     {project.description}
                 </p>
                 
@@ -107,7 +108,7 @@ export default function ProjectContent({ project, otherProjects }) {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--card)] hover:bg-[var(--primary)]/20 text-[var(--foreground)] rounded-lg transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--bg-editor)] border border-[var(--ui-divider)]/30 hover:bg-[var(--bg-highlight)] text-[var(--ui-active)] rounded-lg transition-colors"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +126,7 @@ export default function ProjectContent({ project, otherProjects }) {
                             href={project.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--primary)] hover:bg-[var(--primary)]/80 text-[var(--primary-foreground)] rounded-lg transition-colors"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--accent)] hover:bg-[var(--accent)]/80 text-[var(--bg-base)] rounded-lg transition-colors"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +148,7 @@ export default function ProjectContent({ project, otherProjects }) {
 
             {/* Hero Image */}
             {project.image && (
-                <MotionDiv className="mb-16 rounded-lg overflow-hidden border border-[var(--border)]" {...sectionProps}>
+                <MotionDiv className="mb-16 rounded-lg overflow-hidden border border-[var(--ui-divider)]/30" {...sectionProps}>
                     <Image
                         src={project.image}
                         alt={`${project.title} screenshot`}
@@ -163,18 +164,18 @@ export default function ProjectContent({ project, otherProjects }) {
             <MotionSection className="mb-16" {...sectionProps}>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div>
-                        <h2 className="text-sm font-semibold text-[var(--primary)] uppercase tracking-wider mb-3">
+                        <h2 className="section-header mb-3">
                             The Problem
                         </h2>
-                        <p className="text-[var(--muted)] leading-relaxed">
+                        <p className="text-[var(--ui-muted)] leading-relaxed">
                             {project.problem}
                         </p>
                     </div>
                     <div>
-                        <h2 className="text-sm font-semibold text-[var(--primary)] uppercase tracking-wider mb-3">
+                        <h2 className="section-header mb-3">
                             The Solution
                         </h2>
-                        <p className="text-[var(--muted)] leading-relaxed">
+                        <p className="text-[var(--ui-muted)] leading-relaxed">
                             {project.solution}
                         </p>
                     </div>
@@ -184,17 +185,17 @@ export default function ProjectContent({ project, otherProjects }) {
             {/* Features */}
             {project.features && (
                 <MotionSection className="mb-16" {...sectionProps}>
-                    <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-6">
+                    <h2 className="text-2xl font-semibold text-[var(--ui-active)] mb-6">
                         Key Features
                     </h2>
                     <MotionUl className="grid md:grid-cols-2 gap-3" {...staggerContainerProps}>
                         {project.features.map((feature, index) => (
                             <MotionLi
                                 key={index}
-                                className="flex items-start gap-3 text-[var(--muted)]"
+                                className="flex items-start gap-3 text-[var(--ui-muted)]"
                                 {...staggerItemProps}
                             >
-                                <span className="text-[var(--primary)] mt-1" aria-hidden="true">→</span>
+                                <span className="text-[var(--accent)] mt-1" aria-hidden="true">→</span>
                                 <span>{feature}</span>
                             </MotionLi>
                         ))}
@@ -205,27 +206,27 @@ export default function ProjectContent({ project, otherProjects }) {
             {/* Challenges */}
             {project.challenges && project.challenges.length > 0 && (
                 <MotionSection className="mb-16" {...sectionProps}>
-                    <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-6">
+                    <h2 className="text-2xl font-semibold text-[var(--ui-active)] mb-6">
                         Challenges & Solutions
                     </h2>
                     <MotionDiv className="space-y-8" {...staggerContainerProps}>
                         {project.challenges.map((challenge, index) => (
                             <MotionDiv
                                 key={index}
-                                className="p-6 bg-[var(--card)] rounded-lg"
+                                className="p-6 bg-[var(--bg-editor)] border border-[var(--ui-divider)]/20 rounded-lg"
                                 {...staggerItemProps}
                             >
-                                <h3 className="text-lg font-medium text-[var(--foreground)] mb-2">
+                                <h3 className="text-lg font-medium text-[var(--ui-active)] mb-2">
                                     {challenge.title}
                                 </h3>
-                                <p className="text-[var(--muted)] mb-4">
+                                <p className="text-[var(--ui-muted)] mb-4">
                                     {challenge.description}
                                 </p>
-                                <div className="pt-4 border-t border-[var(--border)]">
-                                    <p className="text-sm font-medium text-[var(--primary)] mb-1">
+                                <div className="pt-4 border-t border-[var(--ui-divider)]/30">
+                                    <p className="text-sm font-medium text-[var(--accent)] mb-1">
                                         How I solved it:
                                     </p>
-                                    <p className="text-[var(--muted)]">
+                                    <p className="text-[var(--ui-muted)]">
                                         {challenge.solution}
                                     </p>
                                 </div>
@@ -238,17 +239,17 @@ export default function ProjectContent({ project, otherProjects }) {
             {/* Learnings */}
             {project.learnings && (
                 <MotionSection className="mb-16" {...sectionProps}>
-                    <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-6">
+                    <h2 className="text-2xl font-semibold text-[var(--ui-active)] mb-6">
                         What I Learned
                     </h2>
                     <MotionUl className="space-y-2" {...staggerContainerProps}>
                         {project.learnings.map((learning, index) => (
                             <MotionLi
                                 key={index}
-                                className="flex items-start gap-3 text-[var(--muted)]"
+                                className="flex items-start gap-3 text-[var(--ui-muted)]"
                                 {...staggerItemProps}
                             >
-                                <span className="text-[var(--secondary)] mt-1" aria-hidden="true">✦</span>
+                                <span className="text-[var(--accent-secondary)] mt-1" aria-hidden="true">✦</span>
                                 <span>{learning}</span>
                             </MotionLi>
                         ))}
@@ -258,14 +259,14 @@ export default function ProjectContent({ project, otherProjects }) {
 
             {/* Tech Stack */}
             <MotionSection className="mb-16" {...sectionProps}>
-                <h2 className="text-2xl font-semibold text-[var(--foreground)] mb-6">
+                <h2 className="text-2xl font-semibold text-[var(--ui-active)] mb-6">
                     Tech Stack
                 </h2>
                 <ul className="flex flex-wrap gap-2" aria-label="Technologies used">
                     {project.skills.map((skill, index) => (
                         <li
                             key={index}
-                            className="px-4 py-2 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full text-sm font-medium"
+                            className={getSkillTagClass(skill)}
                         >
                             {skill}
                         </li>
@@ -274,8 +275,8 @@ export default function ProjectContent({ project, otherProjects }) {
             </MotionSection>
 
             {/* Navigation to other projects */}
-            <MotionFooter className="pt-12 border-t border-[var(--border)]" {...sectionProps}>
-                <h2 className="text-sm font-semibold text-[var(--muted)] uppercase tracking-wider mb-6">
+            <MotionFooter className="pt-12 border-t border-[var(--ui-divider)]/30" {...sectionProps}>
+                <h2 className="section-header mb-6">
                     Other Projects
                 </h2>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -283,12 +284,12 @@ export default function ProjectContent({ project, otherProjects }) {
                         <Link
                             key={p.slug}
                             href={`/projects/${p.slug}`}
-                            className="group p-4 bg-[var(--card)] hover:bg-[var(--card)]/80 rounded-lg transition-colors"
+                            className="group p-4 bg-[var(--bg-editor)] border border-[var(--ui-divider)]/20 hover:border-[var(--ui-divider)]/40 hover:bg-[var(--bg-highlight)] rounded-lg transition-colors"
                         >
-                            <h3 className="font-medium text-[var(--foreground)] group-hover:text-[var(--primary)] transition-colors">
+                            <h3 className="font-medium text-[var(--ui-active)] group-hover:text-[var(--accent)] transition-colors">
                                 {p.title}
                             </h3>
-                            <p className="text-sm text-[var(--muted)] mt-1 line-clamp-2">
+                            <p className="text-sm text-[var(--ui-muted)] mt-1 line-clamp-2">
                                 {p.subtitle}
                             </p>
                         </Link>
