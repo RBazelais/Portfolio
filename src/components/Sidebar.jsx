@@ -1,26 +1,61 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Sidebar() {
+	const [activeSection, setActiveSection] = useState("about");
+
+	// Track active section based on scroll position
+	useEffect(() => {
+		const sections = ["about", "experience", "projects"];
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						setActiveSection(entry.target.id);
+					}
+				});
+			},
+			{
+				rootMargin: "-20% 0px -60% 0px", // Trigger when section is in upper portion of viewport
+				threshold: 0,
+			},
+		);
+
+		sections.forEach((sectionId) => {
+			const element = document.getElementById(sectionId);
+			if (element) observer.observe(element);
+		});
+
+		return () => observer.disconnect();
+	}, []);
+
 	const replayAnimation = useCallback(() => {
-		const nameRow = document.querySelector('.name-animated');
-		const letters = nameRow?.querySelectorAll('.letter');
-		const subtitles = document.querySelectorAll('.subtitle-animated');
+		const nameRow = document.querySelector(".name-animated");
+		const letters = nameRow?.querySelectorAll(".letter");
+		const subtitles = document.querySelectorAll(".subtitle-animated");
 
 		if (!nameRow) return;
+
+		// Play sound effect
+		const audio = new Audio('/sounds/gameboy-advance-startup-sound-made-with-Voicemod.mp3');
+		audio.volume = 0.3;
+		audio.play().catch(() => {
+			// Silently fail if audio can't play (e.g., autoplay restrictions)
+		});
 
 		// Clone each letter node to force a fresh CSS animation instance
 		const letterNodes = Array.from(letters);
 		if (letterNodes.length === 0) return;
 
-		letterNodes.forEach(letter => {
+		letterNodes.forEach((letter) => {
 			const clone = letter.cloneNode(true);
 			letter.replaceWith(clone);
 		});
 
 		// Clone subtitle and tagline nodes and update refs so future clicks still work
-		subtitles.forEach(subtitleElement => {
+		subtitles.forEach((subtitleElement) => {
 			const subtitleClone = subtitleElement.cloneNode(true);
 			subtitleElement.replaceWith(subtitleClone);
 		});
@@ -29,9 +64,10 @@ export default function Sidebar() {
 	return (
 		<header className="lg:w-[48%] lg:sticky lg:top-24 lg:h-fit mb-12 lg:mb-0 flex flex-col">
 			{/* Animated Name - Click to replay */}
-			<h1 
+			<h1
 				className="name-animated text-4xl font-bold cursor-pointer"
 				onClick={replayAnimation}
+				title="Click to replay animation"
 			>
 				<span className="letter">R</span>
 				<span className="letter">a</span>
@@ -49,38 +85,43 @@ export default function Sidebar() {
 				<span className="letter">i</span>
 				<span className="letter">s</span>
 			</h1>
-			<h2 className="subtitle-animated text-xl text-[var(--primary)] mt-2">
+
+			<h2 className="subtitle-animated text-xl text-[var(--accent)] mt-2">
 				UI Engineer
 			</h2>
-			<p className="subtitle-animated text-[var(--muted)] mt-4" style={{ animationDelay: '1.2s' }}>
-				A design-minded engineer focused on building intuitive interfaces and experiences for web and games. 
+			<p
+				className="subtitle-animated text-[var(--ui-muted)] mt-4"
+				style={{ animationDelay: "1.2s" }}
+			>
+				A design-minded engineer focused on building intuitive
+				interfaces and experiences for web and games.
 			</p>
 
-			{/* Navigation */}
-			<nav className="mt-8 hidden lg:block">
-				<ul className="flex flex-col gap-3">
+			{/* Navigation - Git Diff Style */}
+			<nav className="mt-8 hidden lg:block" aria-label="Main navigation">
+				<ul className="flex flex-col gap-1">
 					<li>
-						<a 
+						<a
 							href="#about"
-							className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+							className={`nav-link ${activeSection === "about" ? "active" : ""}`}
 						>
-							ABOUT
+							About
 						</a>
 					</li>
 					<li>
 						<a
 							href="#experience"
-							className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+							className={`nav-link ${activeSection === "experience" ? "active" : ""}`}
 						>
-							EXPERIENCE
+							Experience
 						</a>
 					</li>
 					<li>
 						<a
 							href="#projects"
-							className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+							className={`nav-link ${activeSection === "projects" ? "active" : ""}`}
 						>
-							PROJECTS
+							Projects
 						</a>
 					</li>
 				</ul>
@@ -93,7 +134,7 @@ export default function Sidebar() {
 						href="https://linkedin.com/in/rbazelais"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+						className="text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors"
 						aria-label="LinkedIn"
 						title="LinkedIn"
 					>
@@ -112,7 +153,7 @@ export default function Sidebar() {
 						href="https://github.com/RBazelais"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+						className="text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors"
 						aria-label="GitHub"
 						title="GitHub"
 					>
@@ -131,7 +172,7 @@ export default function Sidebar() {
 						href="https://rbazelais.itch.io/"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-[var(--muted)] hover:text-[var(--foreground)] transition-colors"
+						className="text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors"
 						aria-label="itch.io"
 						title="itch.io"
 					>
@@ -145,7 +186,35 @@ export default function Sidebar() {
 						</svg>
 					</a>
 				</li>
+				<li>
+					<a 
+						href="mailto:contact@rbazelais.com" 
+						className="text-[var(--ui-muted)] hover:text-[var(--accent)] transition-colors"
+						aria-label="Email"
+						title="Email"
+					>
+						<svg 
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							className="w-6 h-6"
+						>
+							<path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+							<path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+						</svg>
+					</a>
+				</li>
 			</ul>
+
+			{/* Status Bar */}
+			<div className="status-bar mt-8 w-fit">
+				<span className="status-dot" aria-hidden="true" />
+				<span>Available for work</span>
+				<span className="status-divider" aria-hidden="true">
+					|
+				</span>
+				<span>Seattle, WA</span>
+			</div>
 		</header>
 	);
 }
