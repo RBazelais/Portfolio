@@ -46,7 +46,7 @@ export const projects = [
 		image: "/images/projects/adaptive-inventory.png",
 		github: "https://github.com/RBazelais/AdaptiveInventory",
 		liveUrl: null,
-		featured: true,
+		featured: false,
 		status: "in-progress",
 		
 		problem: "Most inventory tutorials teach tightly-coupled approaches that don't scale. Coming from web-based game UI (Coherent Gameface), I wanted to understand how native UE5 UMG systems work and learn Epic's recommended patterns for production-quality game UI.",
@@ -87,7 +87,7 @@ export const projects = [
 			"Event-driven UI is how Fortnite works - scales to complex UIs without performance hits"
 		],
 		
-		skills: ["Unreal Engine 5", "C++", "Blueprints", "UMG", "MVVM"]
+		skills: ["Unreal Engine 5", "C++", "Blueprints", "Slate", "UMG"]
 	},
 	{
 		slug: "logic-puzzle",
@@ -97,7 +97,7 @@ export const projects = [
 		image: "/images/projects/logic-puzzle.png",
 		github: "https://github.com/Web103QPRBKA/CPWeb103FinalProject2025",
 		liveUrl: null,
-		featured: true,
+		featured: false,
 		
 		problem: "Our team wanted to create an engaging puzzle game that could generate and validate logic puzzles dynamically, with a clean UI that made the deduction process intuitive.",
 		
@@ -136,7 +136,7 @@ export const projects = [
 			"Integration testing for frontend/backend communication"
 		],
 		
-		skills: ["React", "JavaScript", "Node.js", "PostgreSQL", "HTML & CSS"]
+		skills: ["React", "JavaScript", "Node", "PostgreSQL",]
 	},
 	{
 		slug: "hype-check",
@@ -146,7 +146,7 @@ export const projects = [
 		image: "/images/projects/hype-check.gif",
 		github: "https://github.com/RBazelais/The-Hype-Check",
 		liveUrl: null,
-		featured: true,
+		featured: false,
 		
 		problem: "Movie trailer discussions are scattered across YouTube comments, Reddit, and Twitter. I wanted a dedicated space where people could discuss trailers, track their hype levels, and see community sentiment.",
 		
@@ -181,7 +181,7 @@ export const projects = [
 			"Building engaging social features"
 		],
 		
-		skills: ["React", "JavaScript", "Tailwind CSS", "PostgreSQL", "Supabase"]
+		skills: ["React", "JavaScript", "PostgreSQL", "Tailwind CSS", "MovieDB"]
 	},
 	{
 		slug: "lucky-slots",
@@ -191,7 +191,7 @@ export const projects = [
 		image: "/images/projects/lucky-slots.gif",
 		github: "https://github.com/RBazelais/LuckySlotMachine",
 		liveUrl: null,
-		featured: true,
+		featured: false,
 		
 		problem: "I wanted to study what makes casino games feel satisfying - the anticipation, the near-misses, the celebration of wins. This was an exercise in game feel and juice.",
 		
@@ -226,7 +226,7 @@ export const projects = [
 			"The psychology of satisfying feedback"
 		],
 		
-		skills: ["React", "TypeScript", "Tailwind CSS", "Zustand"]
+		skills: ["React", "TypeScript", "Zustand", "Tailwind CSS"]
 	}
 ];
 
